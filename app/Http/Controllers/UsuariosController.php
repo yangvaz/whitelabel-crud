@@ -11,7 +11,12 @@ class UsuariosController extends Controller
 {
     public function index() {
         $usuarios = Usuario::get();
-        return view('usuarios.list', ['usuarios' => $usuarios]);
+        // return view('usuarios.list', ['usuarios' => $usuarios]);
+
+        return response()->json(
+            $usuarios,
+            201
+        );
     }
 
     public function new() {
@@ -21,7 +26,12 @@ class UsuariosController extends Controller
     public function add(Request $request) {
         $usuario = new Usuario;
         $usuario = $usuario->create($request->all());
-        return Redirect::to('/usuarios');
+        // return Redirect::to('/usuarios');
+
+        return response()->json(
+            $request->all(),
+            201
+        );
     }
 
     public function edit( $id ) {
